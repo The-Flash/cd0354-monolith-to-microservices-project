@@ -1,4 +1,5 @@
 language: node_js
+
 node_js:
   - 17
 
@@ -15,10 +16,19 @@ before_script:
 
 script:
   - docker --version # print the version for logging
+  - docker build -t udagram-api-feed .
+  - docker tag udagram-api-feed thefl45h/udagram-api-feed:latest
   - docker build -t udagram-api-user .
   - docker tag udagram-api-user thefl45h/udagram-api-user:latest
+  - docker build -t udagram-frontend .
+  - docker tag udagram-frontend thefl45h/udagram-frontend:latest
+  - docker build -t reverseproxy .
+  - docker tag reverseproxy thefl45h/reverseproxy:latest
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push thefl45h/udagram-api-feed
   - docker push thefl45h/udagram-api-user
+  - docker push thefl45h/udagram-frontend
+  - docker push thefl45h/reverseproxy
