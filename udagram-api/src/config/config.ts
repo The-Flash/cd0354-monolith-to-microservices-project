@@ -1,3 +1,6 @@
+import { config as envConfig } from "dotenv";
+envConfig();
+
 export const config = {
   'username': process.env.POSTGRES_USERNAME,
   'password': process.env.POSTGRES_PASSWORD,
