@@ -34,11 +34,11 @@ import { V0_USER_MODELS } from './controllers/v0/model.index';
     origin: '*',
   }));
 
-  app.use('/api/v0/', IndexRouter);
+  app.use('/', IndexRouter);
 
   // Root URI call
-  app.get('/', async (req, res) => {
-    res.send('/api/v0/');
+  app.get('/health', async (req, res) => {
+    res.send('User service running');
   });
 
 
