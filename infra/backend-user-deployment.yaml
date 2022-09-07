@@ -16,8 +16,8 @@ spec:
       - name: udagram-api-user
         image: thefl45h/udagram-api-user
         resources:
-          limits:
-            cpu: "500m"
+          requests:
+            cpu: 200m
         env:
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
